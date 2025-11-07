@@ -1,17 +1,17 @@
 import { memo } from 'react';
 import { Handle, Position, NodeProps } from 'reactflow';
 import { Card } from '@/components/ui/card';
-import { LucideIcon } from 'lucide-react';
+import { iconMap, IconName } from '@/lib/workflow-icons';
 
 interface CustomNodeData {
   label: string;
-  icon: LucideIcon;
+  iconName: IconName;
   type: 'trigger' | 'action' | 'logic';
   description: string;
 }
 
 export const CustomNode = memo(({ data, selected }: NodeProps<CustomNodeData>) => {
-  const Icon = data.icon;
+  const Icon = iconMap[data.iconName];
   
   const getNodeColor = () => {
     if (data.type === 'trigger') return 'border-primary bg-primary/5';

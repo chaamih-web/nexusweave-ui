@@ -14,8 +14,7 @@ import ReactFlow, {
 } from 'reactflow';
 import 'reactflow/dist/style.css';
 import { Button } from '@/components/ui/button';
-import { Card } from '@/components/ui/card';
-import { Play, Save, Share2, PanelLeftOpen, FileEdit, PlayCircle, BarChart3, Webhook } from 'lucide-react';
+import { Play, Save, Share2, PanelLeftOpen, FileEdit, PlayCircle, BarChart3 } from 'lucide-react';
 import { CustomNode } from '@/components/workflow/CustomNode';
 import { NodeSidebar } from '@/components/workflow/NodeSidebar';
 
@@ -30,7 +29,7 @@ const initialNodes: Node[] = [
     position: { x: 250, y: 100 },
     data: { 
       label: 'Webhook Trigger',
-      icon: Webhook,
+      iconName: 'Webhook',
       type: 'trigger',
       description: 'Start workflow on HTTP request'
     },

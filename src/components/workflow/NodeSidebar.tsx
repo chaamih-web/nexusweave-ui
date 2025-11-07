@@ -2,22 +2,9 @@ import { Card } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Separator } from '@/components/ui/separator';
-import {
-  Webhook,
-  Mail,
-  Database,
-  Zap,
-  GitBranch,
-  Clock,
-  Filter,
-  Code,
-  MessageSquare,
-  FileText,
-  Calendar,
-  Users,
-  Search,
-} from 'lucide-react';
+import { Search } from 'lucide-react';
 import { useState } from 'react';
+import { iconMap, IconName } from '@/lib/workflow-icons';
 
 const nodeCategories = [
   {
@@ -26,19 +13,19 @@ const nodeCategories = [
     nodes: [
       {
         label: 'Webhook',
-        icon: Webhook,
+        iconName: 'Webhook' as IconName,
         type: 'trigger',
         description: 'Start on HTTP request',
       },
       {
         label: 'Schedule',
-        icon: Clock,
+        iconName: 'Clock' as IconName,
         type: 'trigger',
         description: 'Run on a schedule',
       },
       {
         label: 'Email Received',
-        icon: Mail,
+        iconName: 'Mail' as IconName,
         type: 'trigger',
         description: 'Trigger on new email',
       },
@@ -50,37 +37,37 @@ const nodeCategories = [
     nodes: [
       {
         label: 'Send Email',
-        icon: Mail,
+        iconName: 'Mail' as IconName,
         type: 'action',
         description: 'Send an email',
       },
       {
         label: 'Database Query',
-        icon: Database,
+        iconName: 'Database' as IconName,
         type: 'action',
         description: 'Query a database',
       },
       {
         label: 'HTTP Request',
-        icon: Zap,
+        iconName: 'Zap' as IconName,
         type: 'action',
         description: 'Make HTTP request',
       },
       {
         label: 'Create Record',
-        icon: FileText,
+        iconName: 'FileText' as IconName,
         type: 'action',
         description: 'Create database record',
       },
       {
         label: 'Send Message',
-        icon: MessageSquare,
+        iconName: 'MessageSquare' as IconName,
         type: 'action',
         description: 'Send a message',
       },
       {
         label: 'Update User',
-        icon: Users,
+        iconName: 'Users' as IconName,
         type: 'action',
         description: 'Update user data',
       },
@@ -92,25 +79,25 @@ const nodeCategories = [
     nodes: [
       {
         label: 'If/Else',
-        icon: GitBranch,
+        iconName: 'GitBranch' as IconName,
         type: 'logic',
         description: 'Conditional branching',
       },
       {
         label: 'Filter',
-        icon: Filter,
+        iconName: 'Filter' as IconName,
         type: 'logic',
         description: 'Filter items',
       },
       {
         label: 'Code',
-        icon: Code,
+        iconName: 'Code' as IconName,
         type: 'logic',
         description: 'Run custom code',
       },
       {
         label: 'Delay',
-        icon: Clock,
+        iconName: 'Clock' as IconName,
         type: 'logic',
         description: 'Wait for duration',
       },
@@ -157,7 +144,7 @@ export function NodeSidebar() {
               </h3>
               <div className="space-y-2">
                 {category.nodes.map((node) => {
-                  const Icon = node.icon;
+                  const Icon = iconMap[node.iconName];
                   return (
                     <Card
                       key={node.label}
