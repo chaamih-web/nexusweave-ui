@@ -43,9 +43,6 @@ export const Navigation = () => {
 
           {/* Desktop CTA */}
           <div className="hidden md:flex items-center gap-4">
-            <Button variant="outline" asChild>
-              <Link to="/workflow-builder">Create Workflow</Link>
-            </Button>
             <Button variant="ghost" asChild>
               <Link to="/login">Sign In</Link>
             </Button>
@@ -78,9 +75,6 @@ export const Navigation = () => {
                 </Link>
               ))}
               <div className="flex flex-col gap-2 px-4 pt-4 border-t border-border">
-                <Button variant="outline" asChild>
-                  <Link to="/workflow-builder">Create Workflow</Link>
-                </Button>
                 <Button variant="ghost" asChild>
                   <Link to="/login">Sign In</Link>
                 </Button>

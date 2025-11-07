@@ -9,7 +9,6 @@ import Features from "./pages/Features";
 import UseCases from "./pages/UseCases";
 import Pricing from "./pages/Pricing";
 import Community from "./pages/Community";
-import WorkflowBuilder from "./pages/WorkflowBuilder";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -23,7 +22,6 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/workflows" element={<Workflows />} />
-          <Route path="/workflow-builder" element={<WorkflowBuilder />} />
           <Route path="/features" element={<Features />} />
           <Route path="/use-cases" element={<UseCases />} />
           <Route path="/pricing" element={<Pricing />} />
