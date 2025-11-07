@@ -15,7 +15,7 @@ import ReactFlow, {
 import 'reactflow/dist/style.css';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
-import { Play, Save, Share2, Zap, Database, Mail, Webhook, GitBranch, Clock, Plus } from 'lucide-react';
+import { Play, Save, Share2, PanelLeftOpen, FileEdit, PlayCircle, BarChart3, Webhook } from 'lucide-react';
 import { CustomNode } from '@/components/workflow/CustomNode';
 import { NodeSidebar } from '@/components/workflow/NodeSidebar';
 
@@ -43,6 +43,7 @@ export default function WorkflowBuilder() {
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
   const [workflowName, setWorkflowName] = useState('Untitled Workflow');
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
 
   const onConnect = useCallback(
     (params: Connection) =>
@@ -128,7 +129,7 @@ export default function WorkflowBuilder() {
 
       <div className="flex flex-1 overflow-hidden">
         {/* Node Sidebar */}
-        <NodeSidebar />
+        {isSidebarOpen && <NodeSidebar />}
 
         {/* Canvas Area */}
         <div className="flex-1 relative">
@@ -157,32 +158,30 @@ export default function WorkflowBuilder() {
             <Panel position="top-right" className="bg-card border border-border rounded-lg shadow-lg p-4 m-4">
               <div className="space-y-2">
                 <div className="flex items-center gap-2 text-sm">
-                  <div className="w-3 h-3 rounded-full bg-primary" />
-                  <span className="text-muted-foreground">Triggers</span>
+                  <FileEdit className="w-4 h-4 text-primary" />
+                  <span className="text-muted-foreground">Editor</span>
                 </div>
                 <div className="flex items-center gap-2 text-sm">
-                  <div className="w-3 h-3 rounded-full bg-accent" />
-                  <span className="text-muted-foreground">Actions</span>
+                  <PlayCircle className="w-4 h-4 text-accent" />
+                  <span className="text-muted-foreground">Executions</span>
                 </div>
                 <div className="flex items-center gap-2 text-sm">
-                  <div className="w-3 h-3 rounded-full bg-muted" />
-                  <span className="text-muted-foreground">Logic</span>
+                  <BarChart3 className="w-4 h-4 text-muted-foreground" />
+                  <span className="text-muted-foreground">Evaluations</span>
                 </div>
               </div>
             </Panel>
+            <Panel position="top-left" className="m-4">
+              <Button
+                onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+                size="icon"
+                variant="outline"
+                className="bg-card shadow-lg"
+              >
+                <PanelLeftOpen className="w-5 h-5" />
+              </Button>
+            </Panel>
           </ReactFlow>
-        </div>
-
-        {/* Properties Panel (Right Side) */}
-        <div className="w-80 border-l bg-card/50 backdrop-blur-sm overflow-y-auto">
-          <div className="p-6">
-            <h3 className="text-lg font-semibold mb-4">Node Properties</h3>
-            <Card className="p-4">
-              <p className="text-sm text-muted-foreground">
-                Select a node to view and edit its properties
-              </p>
-            </Card>
-          </div>
         </div>
       </div>
     </div>
