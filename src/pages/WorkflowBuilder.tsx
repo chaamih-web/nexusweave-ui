@@ -159,8 +159,22 @@ export default function WorkflowBuilder() {
     const execution = {
       id: `exec-${Date.now()}`,
       workflowName,
+      userName: 'John Doe',
       status: 'running' as const,
       startTime: new Date(),
+      nodeExecutions: nodes.map((node, index) => ({
+        nodeId: node.id,
+        nodeName: node.data.label,
+        status: 'success' as const,
+        startTime: new Date(Date.now() + index * 100),
+        duration: Math.floor(Math.random() * 500) + 100,
+        output: {
+          success: true,
+          data: `Output from ${node.data.label}`,
+          records: Math.floor(Math.random() * 100),
+          timestamp: new Date().toISOString(),
+        }
+      }))
     };
     setExecutions((prev) => [execution, ...prev]);
     
